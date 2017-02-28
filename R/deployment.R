@@ -8,7 +8,8 @@ deployShinyApp <-
   function(applicationDirectory,
            appTitle,
            dev = T,
-           buildLevel = c("build", "minor", "major", "release")) {
+           buildLevel = c("build", "minor", "major", "release"),
+           accountName, accountToken, accountSecret) {
   incVersion(directory = applicationDirectory,
                level = buildLevel,
                build = T)
