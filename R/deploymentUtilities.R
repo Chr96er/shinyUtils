@@ -1,3 +1,4 @@
+#'@export
 incVersion <-
   function(directory,
            level = c("build", "minor", "major", "release"),
@@ -27,6 +28,7 @@ incVersion <-
     )
   }
 
+#'@export
 setDeploymentTime <-
   function(directory,
            datetimeString = paste0(strftime(as.POSIXlt(Sys.time()), format = "%Y.%m.%d.%H.%M.%S#"),
