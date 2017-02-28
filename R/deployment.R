@@ -1,6 +1,6 @@
 ## update and redeploy shiny app
 library(rsconnect)
-library(shinyUtils) #devtools::install_github(repo = "Chr96er/shinyUtils")
+
 
 
 #'@export
