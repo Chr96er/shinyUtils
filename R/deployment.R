@@ -14,7 +14,7 @@ deployShinyApp <-
     setDeploymentTime(applicationDirectory)
     rsconnect::setAccountInfo(name = accountName,
                    token = accountToken,
-                   secret = accountSecrect)
+                   secret = accountSecret)
     rsconnect::deployApp(
       appDir = applicationDirectory,
       account = accountName,
