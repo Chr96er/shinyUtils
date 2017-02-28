@@ -1,7 +1,6 @@
 ## update and redeploy shiny app
 library(rsconnect)
 
-#'@export
 deployShinyApp <-
   function(applicationDirectory,
            appTitle,
