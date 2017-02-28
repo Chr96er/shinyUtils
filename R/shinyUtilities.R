@@ -1,15 +1,13 @@
-library(shiny)
-
 #'@export
 manual <- function(text) {
-  h4(text, style = "font-style: italic;
+  shiny::h4(text, style = "font-style: italic;
      font-weight: 20; line-height: 1;
      color: #888888;")
 }
 
 #'@export
 htmlStyle <- function() {
-  tags$head(tags$style("html * {font-family: palanquin;}"))
+  shiny::tags$head(shiny::tags$style("html * {font-family: palanquin;}"))
 }
 
 #'@export
