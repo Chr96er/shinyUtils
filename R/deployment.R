@@ -1,8 +1,6 @@
 ## update and redeploy shiny app
 library(rsconnect)
 
-
-
 #'@export
 deployShinyApp <-
   function(applicationDirectory,
@@ -14,10 +12,10 @@ deployShinyApp <-
                level = buildLevel,
                build = T)
     setDeploymentTime(applicationDirectory)
-    setAccountInfo(name = accountName,
+    rsconnect::setAccountInfo(name = accountName,
                    token = accountToken,
                    secret = accountSecrect)
-    deployApp(
+    rsconnect::deployApp(
       appDir = applicationDirectory,
       account = accountName,
       appName = appTitle
