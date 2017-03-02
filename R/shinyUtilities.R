@@ -1,4 +1,5 @@
 library(shiny)
+
 #'@export
 manual <- function(text) {
   h4(text, style = "font-style: italic;
@@ -22,10 +23,12 @@ getDeploymentDate <- function(){
   paste0(strftime(strptime(deploymentDatetime[1], format = "%Y.%m.%d.%H.%M.%S"),format = "%Y.%m.%d %H:%M:%S")," ", gsub("\\.", "/", deploymentDatetime[2]))
 }
 
-#'@export
+#'@title renderVersion
+#'@name renderVersion
 #'@param url Url to source code repository
 #'@param version Version vector containing four integers
 #'@param deploymentDate Date formatted as String
+#'@export
 renderVersion <- function(url,version,deploymentDate){
   list(
     tags$p(
