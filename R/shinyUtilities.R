@@ -26,10 +26,12 @@ getDeploymentDate <- function(){
 #'@title renderVersion
 #'@name renderVersion
 #'@param url Url to source code repository
-#'@param version Version vector containing four integers
-#'@param deploymentDate Date formatted as String
 #'@export
-renderVersion <- function(url,version,deploymentDate){
+renderVersion <- function(url){
+  
+  version <- getVersion()
+  deploymentDate <-getDeploymentDate()
+  
   list(
     tags$p(
       paste0("Source code available under ", url),
