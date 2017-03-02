@@ -1,7 +1,7 @@
 #'@export
 incVersion <-
   function(directory,
-           level = c("build", "minor", "major", "release"),
+           level = c("build", "feature", "test", "release"),
            build = T,
            version = F) {
     level = level[1]
