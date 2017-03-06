@@ -13,30 +13,46 @@ htmlStyle <- function() {
 }
 
 #'@export
-getVersion <- function(){
-  strsplit(strsplit(gsub(".VERSION", replacement = "", dir()[grep(dir(), pattern = "VERSION")]), "-")[[1]][1],"\\.")[[1]]
+styledDiv <- function(text, style) {
+  switch(style,
+         italic = tags$div(HTML(paste(
+           tags$span(style = "font-style: italic", text), sep = ""
+         ))),
+         bold = tags$div(HTML(paste(
+           tags$span(style = "font-weight: bold", text), sep = ""
+         ))))
 }
 
 #'@export
-getDeploymentDate <- function(){
-  deploymentDatetime <- strsplit(strsplit(gsub(".VERSION", replacement = "", dir()[grep(dir(), pattern = "VERSION")]), "-")[[1]][2],"#")[[1]]
-  paste0(strftime(strptime(deploymentDatetime[1], format = "%Y.%m.%d.%H.%M.%S"),format = "%Y.%m.%d %H:%M:%S")," ", gsub("\\.", "/", deploymentDatetime[2]))
+getVersion <- function() {
+  strsplit(strsplit(gsub(".VERSION", replacement = "", dir()[grep(dir(), pattern = "VERSION")]), "-")[[1]][1], "\\.")[[1]]
+}
+
+#'@export
+getDeploymentDate <- function() {
+  deploymentDatetime <-
+    strsplit(strsplit(gsub(".VERSION", replacement = "", dir()[grep(dir(), pattern = "VERSION")]), "-")[[1]][2], "#")[[1]]
+  paste0(
+    strftime(
+      strptime(deploymentDatetime[1], format = "%Y.%m.%d.%H.%M.%S"),
+      format = "%Y.%m.%d %H:%M:%S"
+    ),
+    " ",
+    gsub("\\.", "/", deploymentDatetime[2])
+  )
 }
 
 #'@title renderVersion
 #'@name renderVersion
 #'@param url Url to source code repository
 #'@export
-renderVersion <- function(url){
-  
+renderVersion <- function(url) {
   version <- getVersion()
-  deploymentDate <-getDeploymentDate()
+  deploymentDate <- getDeploymentDate()
   
   list(
-    tags$p(
-      paste0("Source code available under ", url),
-      align = "right"
-    ),
+    tags$p(paste0("Source code available under ", url),
+           align = "right"),
     tags$p(
       "Version ",
       paste(version[1:3], collapse = "."),
