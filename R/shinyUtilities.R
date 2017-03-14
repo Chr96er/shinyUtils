@@ -1,3 +1,4 @@
+#'@import shiny
 library(shiny)
 
 #'@export
