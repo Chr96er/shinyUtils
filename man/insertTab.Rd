@@ -11,5 +11,5 @@ insertTab(id, title, renderExpression, placeholder = "#tabsetPlaceholder")
 
 \item{title}{Displayed tab title.}
 
-\item{renderExpression}{An expression to be displayed on the newly created tab.}
+\item{renderExpression}{An expression to be displayed in a div on the newly created tab.}
 }
