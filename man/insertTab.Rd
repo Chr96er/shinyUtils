@@ -12,4 +12,6 @@ insertTab(id, title, renderExpression, placeholder = "#tabsetPlaceholder")
 \item{title}{Displayed tab title.}
 
 \item{renderExpression}{An expression to be displayed in a div on the newly created tab.}
+
+\item{placeholder}{Selector of element where tab is to be inserted to.}
 }

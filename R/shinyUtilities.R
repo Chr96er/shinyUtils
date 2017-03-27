@@ -72,13 +72,22 @@ renderVersion <- function(url) {
 #'@param id Unique html id of element to be inserted.
 #'@param title Displayed tab title.
 #'@param renderExpression An expression to be displayed in a div on the newly created tab.
-#'@param placeholder
+#'@param placeholder Selector of element where tab is to be inserted to.
 #'@export
 insertTab <-
   function(id,
            title,
            renderExpression,
            placeholder = "#tabsetPlaceholder") {
+    if (!dir.exists("www/images/")) {
+      dir.create("www/images/", recursive = T)
+    }
+    if (!file.exists("www/images/closebutton.jpg")) {
+      download.file(
+        "https://raw.githubusercontent.com/Chr96er/shinyUtils/master/inst/img/closebutton.png",
+        "www/images/closebutton.jpg"
+      )
+    }
     insertUI(
       selector = placeholder,
       where = "beforeEnd",
@@ -92,7 +101,7 @@ insertTab <-
           title,
           "   ",
           tags$img(
-            src = "closebutton.png",
+            src = "images/closebutton.jpg",
             id = paste0(id, "closeButton"),
             width = "20px",
             height = "20px",
