@@ -66,3 +66,67 @@ renderVersion <- function(url) {
     )
   )
 }
+
+#'@title insertTab
+#'@name insertTab
+#'@param id Unique html id of element to be inserted.
+#'@param title Displayed tab title.
+#'@param renderExpression An expression to be displayed in a div on the newly created tab.
+#'@param placeholder
+#'@export
+insertTab <-
+  function(id,
+           title,
+           renderExpression,
+           placeholder = "#tabsetPlaceholder") {
+    insertUI(
+      selector = placeholder,
+      where = "beforeEnd",
+      ui = tags$li(id = paste0(id, "li"), HTML(
+        paste0(
+          "<a href='",
+          paste0("#", id),
+          "' data-toggle = 'tab', data-value = '",
+          id,
+          "'>",
+          title,
+          "   ",
+          tags$img(
+            src = "closebutton.png",
+            id = paste0(id, "closeButton"),
+            width = "20px",
+            height = "20px",
+            name = paste0(id, "closeButton"),
+            onmouseover = paste0(
+              id,
+              "closeButton.",
+              "width='22';",
+              id,
+              "closeButton.",
+              "height='22';"
+            ),
+            onmouseout = paste0(
+              id,
+              "closeButton.",
+              "width='20';",
+              id,
+              "closeButton.",
+              "height='20';"
+            )
+          ),
+          "</a>"
+        )
+      ))
+    )
+    insertUI(
+      selector = ".tab-content",
+      where = "beforeEnd",
+      ui = tabPanel(
+        title = id,
+        value = id,
+        id = id,
+        tags$div(id = paste(id, "div"),
+                 renderExpression)
+      )
+    )
+  }
