@@ -140,3 +140,54 @@ insertTab <-
       )
     )
   }
+
+
+#'@title createImage
+#'@name createImage
+#'@param src Image source.
+#'@param id Unique html id.
+#'@param width Regular width.
+#'@param height Regular height.
+#'@param width.mouseHover Width when hovering over image.
+#'@param height.mouseHover Height when hovering over image.
+#'@export
+createImage <-
+  function(src,
+           id,
+           width = "20",
+           height = "20",
+           width.mouseHover = "22",
+           height.mouseHover = "22") {
+    name <- strsplit(basename(src), "\\.")[[1]][1]
+    tags$img(
+      src = src,
+      id = paste0(id, name),
+      width = width,
+      height = height,
+      name = paste0(id, name),
+      onmouseover = paste0(
+        id,
+        paste0(name, "."),
+        "width='",
+        width.mouseHover ,
+        "';",
+        id,
+        paste0(name, "."),
+        "height='",
+        height.mouseHover,
+        "';"
+      ),
+      onmouseout = paste0(
+        id,
+        paste0(name, "."),
+        "width='",
+        width,
+        "';",
+        id,
+        paste0(name, "."),
+        "height='",
+        height,
+        "';"
+      )
+    )
+  }
