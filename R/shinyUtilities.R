@@ -103,6 +103,7 @@ insertTab <-
           tags$img(
             src = "images/closebutton.jpg",
             id = paste0(id, "closeButton"),
+            class = "closebutton",
             width = "20px",
             height = "20px",
             name = paste0(id, "closeButton"),
