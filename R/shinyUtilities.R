@@ -127,6 +127,7 @@ insertTab <-
 #'@param height Regular height.
 #'@param width.mouseHover Width when hovering over image.
 #'@param height.mouseHover Height when hovering over image.
+#'@param class Class of the newly created image.
 #'@export
 createImage <-
   function(src,
@@ -134,10 +135,12 @@ createImage <-
            width = "20",
            height = "20",
            width.mouseHover = "22",
-           height.mouseHover = "22") {
+           height.mouseHover = "22",
+           class = NULL) {
     name <- strsplit(basename(src), "\\.")[[1]][1]
     tags$img(
       src = src,
+      class = class,
       id = paste0(id, name),
       width = width,
       height = height,

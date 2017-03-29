@@ -5,7 +5,7 @@
 \title{createImage}
 \usage{
 createImage(src, id, width = "20", height = "20", width.mouseHover = "22",
-  height.mouseHover = "22")
+  height.mouseHover = "22", class = NULL)
 }
 \arguments{
 \item{src}{Image source.}
