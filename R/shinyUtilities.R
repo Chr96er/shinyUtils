@@ -100,30 +100,7 @@ insertTab <-
           "'>",
           title,
           "   ",
-          tags$img(
-            src = "images/closebutton.jpg",
-            id = paste0(id, "closeButton"),
-            class = "closebutton",
-            width = "20px",
-            height = "20px",
-            name = paste0(id, "closeButton"),
-            onmouseover = paste0(
-              id,
-              "closeButton.",
-              "width='22';",
-              id,
-              "closeButton.",
-              "height='22';"
-            ),
-            onmouseout = paste0(
-              id,
-              "closeButton.",
-              "width='20';",
-              id,
-              "closeButton.",
-              "height='20';"
-            )
-          ),
+          createImage("images/closebutton.jpg", id),
           "</a>"
         )
       ))
