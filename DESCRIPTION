@@ -1,10 +1,9 @@
 Package: shinyUtils
-Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Title: Provides extensions for the shiny package
+Version: 0.1.1.52623
+Authors@R: person("Christian", "Homberg", email = "christianhomberg@gmail.com", role = c("aut", "cre"))
+Description: Provides extensions for the shiny package, for example the functionality to dynamically add new tabs.
 Depends: R (>= 3.3.2), shiny
-License: What license is it under?
+License: GPL-3
 LazyData: true
 RoxygenNote: 6.0.1
-Remotes: github::chr96er/shiny
