@@ -24,8 +24,8 @@ incVersion <-
       )
     }
     file.rename(
-      paste0(directory, "/", versionFile),
-      paste0(directory, "/", version, "-", versionFileParts[2], ".VERSION")
+      paste0(directory, versionFile),
+      paste0(directory, version, "-", versionFileParts[2], ".VERSION")
     )
   }
 
@@ -39,10 +39,9 @@ setDeploymentTime <-
     versionFileParts <-
       strsplit(gsub(".VERSION", replacement = "", versionFile), "-")[[1]]
     file.rename(
-      paste0(directory, "/", versionFile),
+      paste0(directory, versionFile),
       paste0(
         directory,
-        "/",
         versionFileParts[1],
         "-",
         datetimeString,

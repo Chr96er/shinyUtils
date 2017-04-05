@@ -19,4 +19,6 @@ createImage(src, id, width = "20", height = "20", width.mouseHover = "22",
 \item{width.mouseHover}{Width when hovering over image.}
 
 \item{height.mouseHover}{Height when hovering over image.}
+
+\item{class}{Class of the newly created image.}
 }
