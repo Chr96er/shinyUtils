@@ -18,8 +18,8 @@ incVersion <-
       version = switch(
         level,
         build   = paste(version[1], version[2], version[3]    , build, sep = "."),
-        minor   = paste(version[1], version[2], as.numeric(version[3]) + 1, build, sep = "."),
-        major   = paste(version[1], as.numeric(version[2]) + 1, (!resetSubLevel) * version[3], build, sep = "."),
+        feature   = paste(version[1], version[2], as.numeric(version[3]) + 1, build, sep = "."),
+        stable   = paste(version[1], as.numeric(version[2]) + 1, (!resetSubLevel) * version[3], build, sep = "."),
         release = paste(as.numeric(version[1]) + 1, (!resetSubLevel) * version[2], (!resetSubLevel) * version[3], build, sep = ".")
       )
     }
