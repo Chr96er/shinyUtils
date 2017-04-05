@@ -12,15 +12,19 @@ incVersion <-
       versionFileParts <-
         strsplit(gsub(".VERSION", replacement = "", versionFile), "-")[[1]]
       version <- strsplit(versionFileParts[1], "\\.")[[1]]
+      releaseVersion <- as.numeric(version[1])
+      stableVersion <- as.numeric(version[2])
+      featureVersion <- as.numeric(version[3])
+      buildVersion <- as.numeric(version[4])
       if (build) {
         build = sample(1:99999, 1)
       }
       version = switch(
         level,
-        build   = paste(version[1], version[2], version[3]    , build, sep = "."),
-        feature   = paste(version[1], version[2], as.numeric(version[3]) + 1, build, sep = "."),
-        stable   = paste(version[1], as.numeric(version[2]) + 1, (!resetSubLevel) * version[3], build, sep = "."),
-        release = paste(as.numeric(version[1]) + 1, (!resetSubLevel) * version[2], (!resetSubLevel) * version[3], build, sep = ".")
+        build   = paste(releaseVersion, stableVersion, featureVersion  , build, sep = "."),
+        feature   = paste(releaseVersion, stableVersion, featureVersion + 1, build, sep = "."),
+        stable   = paste(releaseVersion, stableVersion + 1, (!resetSubLevel) * featureVersion, build, sep = "."),
+        release = paste(releaseVersion + 1, (!resetSubLevel) * stableVersion, (!resetSubLevel) * featureVersion, build, sep = ".")
       )
     }
     file.rename(

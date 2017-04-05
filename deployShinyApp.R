@@ -5,11 +5,16 @@ deployShinyApp <-
   function(applicationDirectory,
            appTitle,
            dev = T,
-           buildLevel = c("build", "minor", "major", "release"),
+           buildLevel = c("build", "feature", "stable", "release"),
+           resetSubLevel = T,
+           build = T,
+           version = F,
            accountName, accountToken, accountSecret) {
   incVersion(directory = applicationDirectory,
                level = buildLevel,
-               build = T)
+               resetSubLevel,
+               build,
+               version)
     setDeploymentTime(applicationDirectory)
     rsconnect::setAccountInfo(name = accountName,
                    token = accountToken,
