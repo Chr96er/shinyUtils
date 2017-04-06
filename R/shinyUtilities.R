@@ -100,7 +100,7 @@ insertTab <-
           "'>",
           title,
           "   ",
-          createImage("images/closebutton.jpg", id, class = "closebutton"),
+          insertImage("images/closebutton.jpg", id, class = "closebutton"),
           "</a>"
         )
       ))
@@ -119,8 +119,8 @@ insertTab <-
   }
 
 
-#'@title createImage
-#'@name createImage
+#'@title insertImage
+#'@name insertImage
 #'@param src Image source.
 #'@param id Unique html id.
 #'@param width Regular width.
@@ -129,7 +129,7 @@ insertTab <-
 #'@param height.mouseHover Height when hovering over image.
 #'@param class Class of the newly created image.
 #'@export
-createImage <-
+insertImage <-
   function(src,
            id,
            width = "20",
