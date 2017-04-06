@@ -132,17 +132,18 @@ insertIcon <-
     if (!dir.exists("www/images/")) {
       dir.create("www/images/", recursive = T)
     }
-    if (!file.exists(paste0("www/images/", src))) {
+    target <- paste0("www/images/", src)
+    if (!file.exists(target)) {
       download.file(
         paste0("https://raw.githubusercontent.com/Chr96er/shinyUtils/master/inst/img/", src),
-        paste0("www/images/", src)
+        target
       )
     }
     if(is.null(name)){
       name <- tools::file_path_sans_ext(src) 
     }
     tags$img(
-      src = src,
+      src = target,
       class = class,
       id = paste0(id, name),
       width = width,
