@@ -143,7 +143,7 @@ insertIcon <-
       name <- tools::file_path_sans_ext(src) 
     }
     tags$img(
-      src = target,
+      src = paste0("images/", src),
       class = class,
       id = paste0(id, name),
       width = width,
