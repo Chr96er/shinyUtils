@@ -79,15 +79,6 @@ insertTab <-
            title,
            renderExpression,
            placeholder = "#tabsetPlaceholder") {
-    if (!dir.exists("www/images/")) {
-      dir.create("www/images/", recursive = T)
-    }
-    if (!file.exists("www/images/closebutton.jpg")) {
-      download.file(
-        "https://raw.githubusercontent.com/Chr96er/shinyUtils/master/inst/img/closebutton.png",
-        "www/images/closebutton.jpg"
-      )
-    }
     insertUI(
       selector = placeholder,
       where = "beforeEnd",
@@ -100,7 +91,7 @@ insertTab <-
           "'>",
           title,
           "   ",
-          insertImage("images/closebutton.jpg", id, class = "closebutton"),
+          insertIcon("closebutton.jpg", id, class = "closebutton"),
           "</a>"
         )
       ))
@@ -119,8 +110,8 @@ insertTab <-
   }
 
 
-#'@title insertImage
-#'@name insertImage
+#'@title insertIcon
+#'@name insertIcon
 #'@param src Image source.
 #'@param id Unique html id.
 #'@param width Regular width.
@@ -129,15 +120,27 @@ insertTab <-
 #'@param height.mouseHover Height when hovering over image.
 #'@param class Class of the newly created image.
 #'@export
-insertImage <-
+insertIcon <-
   function(src,
            id,
            width = "20",
            height = "20",
            width.mouseHover = "22",
            height.mouseHover = "22",
-           class = NULL) {
-    name <- strsplit(basename(src), "\\.")[[1]][1]
+           class = NULL,
+           name = NULL) {
+    if (!dir.exists("www/images/")) {
+      dir.create("www/images/", recursive = T)
+    }
+    if (!file.exists(paste0("www/images/", src))) {
+      download.file(
+        paste0("https://raw.githubusercontent.com/Chr96er/shinyUtils/master/inst/img/", src),
+        paste0("www/images/", src)
+      )
+    }
+    if(is.null(name)){
+      name <- tools::file_path_sans_ext(src) 
+    }
     tags$img(
       src = src,
       class = class,
