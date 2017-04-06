@@ -91,7 +91,7 @@ insertTab <-
           "'>",
           title,
           "   ",
-          insertIcon("closebutton.jpg", id, class = "closebutton"),
+          insertIcon("closebutton.png", id, class = "closebutton"),
           "</a>"
         )
       ))
