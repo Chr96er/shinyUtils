@@ -135,12 +135,15 @@ insertIcon <-
     target <- paste0("www/images/", src)
     if (!file.exists(target)) {
       download.file(
-        paste0("https://raw.githubusercontent.com/Chr96er/shinyUtils/master/inst/img/", src),
+        paste0(
+          "https://raw.githubusercontent.com/Chr96er/shinyUtils/master/inst/img/",
+          src
+        ),
         target
       )
     }
-    if(is.null(name)){
-      name <- tools::file_path_sans_ext(src) 
+    if (is.null(name)) {
+      name <- tools::file_path_sans_ext(src)
     }
     tags$img(
       src = paste0("images/", src),
@@ -149,29 +152,33 @@ insertIcon <-
       width = width,
       height = height,
       name = paste0(id, name),
-      onmouseover = paste0(
-        id,
-        paste0(name, "."),
-        "width=&quot;",
-        width.mouseHover ,
-        "&quot;;",
-        id,
-        paste0(name, "."),
-        "height=&quot;",
-        height.mouseHover,
-        "&quot;;"
+      onmouseover = HTML(
+        paste0(
+          id,
+          paste0(name, "."),
+          "width=&quot;",
+          width.mouseHover ,
+          "&quot;;",
+          id,
+          paste0(name, "."),
+          "height=&quot;",
+          height.mouseHover,
+          "&quot;;"
+        )
       ),
-      onmouseout = paste0(
-        id,
-        paste0(name, "."),
-        "width=&quot;",
-        width,
-        "&quot;;",
-        id,
-        paste0(name, "."),
-        "height=&quot;",
-        height,
-        "&quot;;"
+      onmouseout = HTML(
+        paste0(
+          id,
+          paste0(name, "."),
+          "width=&quot;",
+          width,
+          "&quot;;",
+          id,
+          paste0(name, "."),
+          "height=&quot;",
+          height,
+          "&quot;;"
+        )
       )
     )
   }
