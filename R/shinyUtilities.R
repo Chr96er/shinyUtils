@@ -156,28 +156,28 @@ insertIcon <-
         paste0(
           id,
           paste0(name, "."),
-          "width=&quot;",
+          "width='",
           width.mouseHover ,
-          "&quot;;",
+          "'",
           id,
           paste0(name, "."),
-          "height=&quot;",
+          "height='",
           height.mouseHover,
-          "&quot;;"
+          "'"
         )
       ),
       onmouseout = HTML(
         paste0(
           id,
           paste0(name, "."),
-          "width=&quot;",
+          "'",
           width,
-          "&quot;;",
+          "'",
           id,
           paste0(name, "."),
-          "height=&quot;",
+          "'",
           height,
-          "&quot;;"
+          "'"
         )
       )
     )
