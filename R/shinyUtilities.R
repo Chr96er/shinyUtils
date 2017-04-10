@@ -170,12 +170,12 @@ insertIcon <-
         paste0(
           id,
           paste0(name, "."),
-          "'",
+          "width='",
           width,
           "';",
           id,
           paste0(name, "."),
-          "'",
+          "height='",
           height,
           "'"
         )
