@@ -22,9 +22,27 @@ incVersion <-
       version = switch(
         level,
         build   = paste(releaseVersion, stableVersion, featureVersion  , build, sep = "."),
-        feature   = paste(releaseVersion, stableVersion, featureVersion + 1, build, sep = "."),
-        stable   = paste(releaseVersion, stableVersion + 1, (!resetSubLevel) * featureVersion, build, sep = "."),
-        release = paste(releaseVersion + 1, (!resetSubLevel) * stableVersion, (!resetSubLevel) * featureVersion, build, sep = ".")
+        feature   = paste(
+          releaseVersion,
+          stableVersion,
+          featureVersion + 1,
+          build,
+          sep = "."
+        ),
+        stable   = paste(
+          releaseVersion,
+          stableVersion + 1,
+          (!resetSubLevel) * featureVersion,
+          build,
+          sep = "."
+        ),
+        release = paste(
+          releaseVersion + 1,
+          (!resetSubLevel) * stableVersion,
+          (!resetSubLevel) * featureVersion,
+          build,
+          sep = "."
+        )
       )
     }
     file.rename(
@@ -46,11 +64,32 @@ setDeploymentTime <-
       paste0(directory, "/", versionFile),
       paste0(
         directory,
-        "/", 
+        "/",
         versionFileParts[1],
         "-",
         datetimeString,
         ".VERSION"
       )
     )
+  }
+
+#'@param shinyDir Root directory of shiny application, default: current working directory
+#'@param shinyDirStr Structure of shiny application directory, default: /inst/application/
+#'@param appDir Name of the application, used by server for url, default: name of shiny application folder
+#'@param shinyAppsDir Directory, where new application is copied to, default: home/ShinyApps/
+#'@export
+deployToHome <-
+  function(shinyDir = getwd(),
+           shinyDirStr = file.path("inst", "application"),
+           appDir = basename(shinyDir),
+           shinyAppsDir = file.path("~", "ShinyApps")) {
+    targetDir = file.path(shinyAppsDir, appDir)
+    if (file.exists(targetDir)) {
+      unlink(targetDir, recursive = T)
+    }
+    file.copy(file.path(shinyDir, shinyDirStr),
+              shinyAppsDir,
+              recursive = T)
+    file.rename(file.path(shinyAppsDir, basename(shinyDirStr)),
+                targetDir)
   }
