@@ -1,28 +1,40 @@
 library(shiny)
 library(shinyjs)
+library(shinyUtils)
 server <- function(input, output, session) {
   insertedTabs <- c()
-  observeEvent(input$addTab, {
+  newTab <- eventReactive(input$addTab, {
     if (is.null(input$addTab)) {
-      return(NULL)
+      return("noID")
     }
     id <- paste0("tabset", input$tabTitle)
     if (id %in% insertedTabs) {
-      return(NULL)
+      return("duplicate")
     }
     insertedTabs <<- c(id, insertedTabs)
     insertTab(id, title = input$tabTitle, renderPlot(plot(runif(1:100))))
     reset("tabTitle")
+    return("success")
   })
   
   observeEvent(input$closeTab, {
     if (is.null(input$closeTab)) {
       return(NULL)
     }
-    tabToClose <- gsub("closeButton", "", input$closeTab)
-    hide(paste0(tabToClose, "li"), anim = T, animType = "fade")
+    tabToClose <- gsub("closebutton", "", input$closeTab)
+    hide(paste0(tabToClose, "li"),
+         anim = T,
+         animType = "fade")
     hide(tabToClose, anim = T, animType = "fade")
-    insertedTabs <<- insertedTabs[-(insertedTabs == tabToClose)]
+  })
+  
+  output$error <- renderText({
+    switch(
+      newTab(),
+      "success" = "Successfully added tab.",
+      "noID" = "Please insert a title.",
+      "duplicate" = "A tab with the same title has already been added. Please choose a different name."
+    )
   })
   
 }
@@ -41,14 +53,15 @@ ui <- fluidPage(
       });
       })'
     )
-  ),
+    ),
   sidebarLayout(
     sidebarPanel(
       textInput("tabTitle", "Tab title"),
-      actionButton("addTab", "Add tab")
+      actionButton("addTab", "Add tab"),
+      textOutput("error")
     ),
     mainPanel(tabsetPanel(id = "tabsetPlaceholder"))
   )
-)
+  )
 
 shinyApp(ui = ui, server = server)
